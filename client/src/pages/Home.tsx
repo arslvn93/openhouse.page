@@ -9,7 +9,7 @@ export default function Home() {
       }}
       headline={{
         line1: "Launch Your",
-        line2: "Giveaway"
+        line2: "Giveaway Into Orbit"
       }}
       subtitle="Official giveaway platform built for realtors and forward-thinking teams — secure, verified, and seamless. Host giveaways at unique URLs with confidence."
       buttons={{
