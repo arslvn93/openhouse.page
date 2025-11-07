@@ -5,22 +5,22 @@ export default function Home() {
     <Hero
       trustBadge={{
         text: "giveaway.bz",
-        icons: ["✨"]
+        icons: ["✨"],
       }}
       headline={{
         line1: "Launch Your",
-        line2: "Giveaway Into Orbit"
+        line2: "Giveaway Into Orbit",
       }}
-      subtitle="Official giveaway platform built for realtors and forward-thinking teams — secure, verified, and seamless. Host giveaways at unique URLs with confidence."
+      subtitle="Official Giveaway platform built for realtors and forward-thinking teams — secure, verified, and seamless."
       buttons={{
         primary: {
           text: "Create Your Giveaway",
-          onClick: () => console.log('Create giveaway clicked')
+          onClick: () => console.log("Create giveaway clicked"),
         },
         secondary: {
-          text: "By SalesGenius",
-          onClick: () => console.log('SalesGenius clicked')
-        }
+          text: "SalesGenius",
+          onClick: () => console.log("SalesGenius clicked"),
+        },
       }}
     />
   );
