@@ -7,8 +7,15 @@
 
 [[redirects]]
   from = "/338"
-  to = "/338/"
-  status = 301
+  to = "https://giveaway-338.netlify.app"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/338/"
+  to = "https://giveaway-338.netlify.app/"
+  status = 200
+  force = true
 
 [[redirects]]
   from = "/338/*"
@@ -18,8 +25,15 @@
 
 [[redirects]]
   from = "/498"
-  to = "/498/"
-  status = 301
+  to = "https://giveaway-498.netlify.app"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/498/"
+  to = "https://giveaway-498.netlify.app/"
+  status = 200
+  force = true
 
 [[redirects]]
   from = "/498/*"
@@ -29,8 +43,15 @@
 
 [[redirects]]
   from = "/218"
-  to = "/218/"
-  status = 301
+  to = "https://giveaway-218.netlify.app"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/218/"
+  to = "https://giveaway-218.netlify.app/"
+  status = 200
+  force = true
 
 [[redirects]]
   from = "/218/*"
@@ -40,8 +61,15 @@
 
 [[redirects]]
   from = "/959"
-  to = "/959/"
-  status = 301
+  to = "https://giveaway-959.netlify.app"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/959/"
+  to = "https://giveaway-959.netlify.app/"
+  status = 200
+  force = true
 
 [[redirects]]
   from = "/959/*"
