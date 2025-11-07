@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <Hero
       trustBadge={{
-        text: "giveaway.bz",
+        text: "openhouse.page",
         icons: ["✨"],
       }}
       headline={{
