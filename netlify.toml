@@ -6,6 +6,30 @@
   NODE_VERSION = "20"
 
 [[redirects]]
+  from = "/338/*"
+  to = "https://giveaway-338.netlify.app/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/498/*"
+  to = "https://giveaway-498.netlify.app/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/218/*"
+  to = "https://giveaway-218.netlify.app/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/959/*"
+  to = "https://giveaway-959.netlify.app/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
