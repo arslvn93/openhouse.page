@@ -9,12 +9,12 @@ export default function Home() {
       }}
       headline={{
         line1: "Launch Your",
-        line2: "Giveaway Into Orbit",
+        line2: "Open House Into Orbit",
       }}
-      subtitle="Official Giveaway platform built for realtors and forward-thinking teams — secure, verified, and seamless."
+      subtitle="Official Open House platform built for realtors and forward-thinking teams — secure, verified, and seamless."
       buttons={{
         primary: {
-          text: "Create Your Giveaway",
+          text: "Create Your Open House Page",
           onClick: () => console.log("Create giveaway clicked"),
         },
         secondary: {
