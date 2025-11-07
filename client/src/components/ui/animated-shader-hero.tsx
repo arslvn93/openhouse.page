@@ -1,5 +1,28 @@
 import { useRef, useEffect } from 'react';
 
+interface HeroProps {
+  trustBadge?: {
+    text: string;
+    icons?: string[];
+  };
+  headline: {
+    line1: string;
+    line2: string;
+  };
+  subtitle: string;
+  buttons?: {
+    primary?: {
+      text: string;
+      onClick?: () => void;
+    };
+    secondary?: {
+      text: string;
+      onClick?: () => void;
+    };
+  };
+  className?: string;
+}
+
 const defaultShaderSource = `#version 300 es
 precision highp float;
 out vec4 O;
@@ -56,12 +79,11 @@ void main(void) {
     uv+=.1*cos(i*vec2(.1+.01*i, .8)+i*i+T*.5+.1*uv.x);
     vec2 p=uv;
     float d=length(p);
-    col+=.00125/d*(cos(sin(i)*vec3(2,3,1))+1.);
+    col+=.00125/d*(cos(sin(i)*vec3(1,2,3))+1.);
     float b=noise(i+p+bg*1.731);
     col+=.002*b/length(max(p,vec2(b*p.x*.02,p.y)));
-    col=mix(col,vec3(bg*.35,bg*.2,bg*.5),d);
+    col=mix(col,vec3(bg*.25,bg*.137,bg*.05),d);
   }
-  col *= vec3(1.5, 1.2, 2.0);
   O=vec4(col,1);
 }`;
 
@@ -288,7 +310,7 @@ class PointerHandler {
   }
 }
 
-export default function ShaderBackground() {
+const useShaderBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameRef = useRef<number>();
   const rendererRef = useRef<WebGLRenderer | null>(null);
@@ -352,11 +374,135 @@ export default function ShaderBackground() {
     };
   }, []);
 
+  return canvasRef;
+};
+
+const Hero: React.FC<HeroProps> = ({
+  trustBadge,
+  headline,
+  subtitle,
+  buttons,
+  className = ""
+}) => {
+  const canvasRef = useShaderBackground();
+
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 w-full h-full touch-none -z-10"
-      style={{ background: 'black' }}
-    />
+    <div className={`relative w-full h-screen overflow-hidden bg-black ${className}`}>
+      <style>{`
+        @keyframes fade-in-down {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fade-in-down {
+          animation: fade-in-down 0.8s ease-out forwards;
+        }
+        
+        .animate-fade-in-up {
+          animation: fade-in-up 0.8s ease-out forwards;
+          opacity: 0;
+        }
+        
+        .animation-delay-200 {
+          animation-delay: 0.2s;
+        }
+        
+        .animation-delay-400 {
+          animation-delay: 0.4s;
+        }
+        
+        .animation-delay-600 {
+          animation-delay: 0.6s;
+        }
+        
+        .animation-delay-800 {
+          animation-delay: 0.8s;
+        }
+      `}</style>
+      
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full object-contain touch-none"
+        style={{ background: 'black' }}
+      />
+      
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-white">
+        {trustBadge && (
+          <div className="mb-8 animate-fade-in-down">
+            <div className="flex items-center gap-2 px-6 py-3 bg-purple-500/10 backdrop-blur-md border border-purple-300/30 rounded-full text-sm">
+              {trustBadge.icons && (
+                <div className="flex gap-1">
+                  {trustBadge.icons.map((icon, index) => (
+                    <span key={index} className="text-purple-300">
+                      {icon}
+                    </span>
+                  ))}
+                </div>
+              )}
+              <span className="text-purple-100">{trustBadge.text}</span>
+            </div>
+          </div>
+        )}
+
+        <div className="text-center space-y-6 max-w-5xl mx-auto px-4">
+          <div className="space-y-2">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white animate-fade-in-up animation-delay-200" data-testid="text-heading">
+              {headline.line1}
+            </h1>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-purple-300 via-pink-400 to-purple-400 bg-clip-text text-transparent animate-fade-in-up animation-delay-400">
+              {headline.line2}
+            </h1>
+          </div>
+          
+          <div className="max-w-3xl mx-auto animate-fade-in-up animation-delay-600">
+            <p className="text-lg md:text-xl lg:text-2xl text-purple-100/90 font-light leading-relaxed" data-testid="text-subtitle">
+              {subtitle}
+            </p>
+          </div>
+          
+          {buttons && (
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10 animate-fade-in-up animation-delay-800">
+              {buttons.primary && (
+                <button 
+                  onClick={buttons.primary.onClick}
+                  className="px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105"
+                  data-testid="button-primary"
+                >
+                  {buttons.primary.text}
+                </button>
+              )}
+              {buttons.secondary && (
+                <button 
+                  onClick={buttons.secondary.onClick}
+                  className="px-8 py-4 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-300/30 hover:border-purple-300/50 text-purple-100 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+                  data-testid="button-secondary"
+                >
+                  {buttons.secondary.text}
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   );
-}
+};
+
+export default Hero;

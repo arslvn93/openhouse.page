@@ -1,11 +1,18 @@
-import ShaderBackground from "@/components/ShaderBackground";
-import HeroContent from "@/components/HeroContent";
+import Hero from "@/components/ui/animated-shader-hero";
+import { Shield, Lock, Check } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black">
-      <ShaderBackground />
-      <HeroContent />
-    </div>
+    <Hero
+      trustBadge={{
+        text: "Official & Secure Platform",
+        icons: ["🔒"]
+      }}
+      headline={{
+        line1: "giveaway.bz",
+        line2: "Official Giveaway Platform"
+      }}
+      subtitle="Secure. Verified. Trusted. All giveaways are hosted on unique URLs like giveaway.bz/12345"
+    />
   );
 }
